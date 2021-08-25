@@ -1,10 +1,3 @@
-# Android fstab file.
-# The filesystem that contains the filesystem checker binary (typically /system) cannot
-# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
-
-# Currently we dont have e2fsck compiled. So fs check would failed.
-
-# <mount_point>  <fstype>  <device>        <device2>                  <flags>
 system		/system			ext4		logical
 vendor		/vendor			ext4		display="Vendor";logical
 product		/product		ext4		display="Product";logical
@@ -16,23 +9,35 @@ product		/product		ext4		display="Product";logical
 /recovery         emmc     /dev/block/platform/bootdevice/by-name/recovery     flags=backup=1;flashimg=1
 /bootloader       emmc     /dev/block/platform/bootdevice/by-name/lk           flags=display="bootloader";backup=1;flashimg=1
 /bootloader2      emmc     /dev/block/platform/bootdevice/by-name/lk2          flags=display="bootloader2";backup=1;flashimg=1
-/metadata         ext4     /dev/block/platform/bootdevice/by-name/md_udc       flags=display="metadata";backup=1
-/cust             ext4     /dev/block/platform/bootdevice/by-name/cust         flags=display="cust";backup=1
-/protect_f        ext4     /dev/block/platform/bootdevice/by-name/protect1     flags=display="protect_f";backup=1
-/protect_s        ext4     /dev/block/platform/bootdevice/by-name/protect2     flags=display="protect_s";backup=1
-/nvdata           ext4     /dev/block/platform/bootdevice/by-name/nvdata       flags=display="nvdata";backup=1
-/nvcfg            ext4     /dev/block/platform/bootdevice/by-name/nvcfg        flags=display="nvcfg";backup=1
-/persist          ext4     /dev/block/platform/bootdevice/by-name/persist      flags=display="persist";backup=1
-/nvram            emmc     /dev/block/platform/bootdevice/by-name/nvram        flags=display="nvram";backup=1;flashimg=1
-/proinfo          emmc     /dev/block/platform/bootdevice/by-name/proinfo      flags=display="proinfo";backup=1;flashimg=1
-/logo             emmc     /dev/block/platform/bootdevice/by-name/logo         flags=display="logo";backup=1;flashimg=1
-/tee1             emmc     /dev/block/platform/bootdevice/by-name/tee1         flags=display="trustzone1";backup=1;flashimg=1
-/tee2             emmc     /dev/block/platform/bootdevice/by-name/tee2         flags=display="trustzone2";backup=1;flashimg=1
-/vbmeta           emmc     /dev/block/platform/bootdevice/by-name/vbmeta       flags=display="vbmeta";backup=1;flashimg=1
+/vbmeta          emmc /dev/block/platform/bootdevice/by-name/vbmeta          flags=display="VBMeta";backup=1
+/vbmeta_system   emmc /dev/block/platform/bootdevice/by-name/vbmeta_system   flags=display="VBMeta (System)";backup=1
+/vbmeta_vendor   emmc /dev/block/platform/bootdevice/by-name/vbmeta_vendor   flags=display="VBMeta (Vendor)";backup=1
+/nvram           emmc /dev/block/platform/bootdevice/by-name/nvram           flags=display="NVRAM";backup=1
+/nvcfg           ext4 /dev/block/platform/bootdevice/by-name/nvcfg           flags=display="NVCFG";backup=1;subpartitionof=/nvram
+/nvdata          ext4 /dev/block/platform/bootdevice/by-name/nvdata          flags=display="NVDATA";backup=1;subpartitionof=/nvram
+/persist         ext4 /dev/block/platform/bootdevice/by-name/persist         flags=display="Persist";backup=1
+/protect_f       ext4 /dev/block/platform/bootdevice/by-name/protect1        flags=display="Protect_F";backup=1
+/protect_s       ext4 /dev/block/platform/bootdevice/by-name/protect2        flags=display="Protect_S";backup=1
+/audio_dsp       emmc /dev/block/platform/bootdevice/by-name/audio_dsp
+/bootloader      emmc /dev/block/platform/bootdevice/by-name/lk
+/bootloader2     emmc /dev/block/platform/bootdevice/by-name/lk2
+/cam_vpu1        emmc /dev/block/platform/bootdevice/by-name/cam_vpu1
+/cam_vpu2        emmc /dev/block/platform/bootdevice/by-name/cam_vpu2
+/cam_vpu3        emmc /dev/block/platform/bootdevice/by-name/cam_vpu3
+/cdt_engineering emmc /dev/block/platform/bootdevice/by-name/cdt_engineering
+/gz1             emmc /dev/block/platform/bootdevice/by-name/gz1
+/gz2             emmc /dev/block/platform/bootdevice/by-name/gz2
+/logo            emmc /dev/block/platform/bootdevice/by-name/logo            flags=display="Logo";backup=1;flashimg=1
+/md1img          emmc /dev/block/platform/bootdevice/by-name/md1img
+/spmfw           emmc /dev/block/platform/bootdevice/by-name/spmfw
+/sspm_1          emmc /dev/block/platform/bootdevice/by-name/sspm_1
+/sspm_2          emmc /dev/block/platform/bootdevice/by-name/sspm_2
+/tee1            emmc /dev/block/platform/bootdevice/by-name/tee1
+/tee2            emmc /dev/block/platform/bootdevice/by-name/tee2
+/para            emmc /dev/block/platform/bootdevice/by-name/para
+/persistent      emmc /dev/block/platform/bootdevice/by-name/frp
+/proinfo         emmc /dev/block/platform/bootdevice/by-name/proinfo
 
-/para             emmc     /dev/block/platform/bootdevice/by-name/para
-/misc             emmc     /dev/block/platform/bootdevice/by-name/misc
-/persistent       emmc     /dev/block/platform/bootdevice/by-name/frp
-
-/external_sd      vfat     /dev/block/mmcblk1p1  /dev/block/mmcblk1            flags=display="external_sd";storage;wipeingui;removable;fsflags="utf8"
-/usb-otg          vfat     /dev/block/sda1  /dev/block/sda                     flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"
+/external_sd     auto /dev/block/mmcblk0p1 /dev/block/mmcblk0
+/usb-otg         auto /dev/block/sdd1      /dev/block/sdd                    flags=storage;wipeingui;removable;backup=0
+© 2021 GitHub, Inc.
