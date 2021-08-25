@@ -16,29 +16,16 @@
 # limitations under the License.
 #
 
-# Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+# Inherit from phoenix device
+$(call inherit-product, device/realme/RMX2020/device.mk)
 
-LOCAL_PATH := device/realme/RMX2020
+# Inherit some common Omni stuff.
+#$(call inherit-product, vendor/omni/config/common.mk)
 
-# Qcom standerd Decryption
-#PRODUCT_PACKAGES += \
-#    qcom_decrypt \
-#    qcom_decrypt_fbe
-
-# Dynamic partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-	android.hardware.fastboot@1.0-impl-mock.recovery \
-    fastbootd
-
-# Apex libraries
-#PRODUCT_HOST_PACKAGES += \
-    libandroidicu
-
-# HACK: Set vendor patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.security_patch=2099-12-31
+# Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := RMX2020
+PRODUCT_NAME := omni_RMX2020
+PRODUCT_BRAND := realme
+PRODUCT_MODEL := RMX2020
+PRODUCT_MANUFACTURER := realme
+PRODUCT_RELEASE_NAME := realme 6
