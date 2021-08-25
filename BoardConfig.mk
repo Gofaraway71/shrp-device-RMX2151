@@ -41,16 +41,22 @@ TARGET_NO_BOOTLOADER := true
 TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
 TARGET_HW_DISK_ENCRYPTION := true
 
-## Kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78af000 androidboot.selinux=permissive
-BOARD_KERNEL_BASE := 0x80000000
+# Kernel
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 loop.max_part=70 buildvariant=eng
+BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=bootloader
+BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_KERNEL_BASE := 0x40078000
+BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_RAMDISK_OFFSET := 0x01000000
-BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-#TARGET_KERNEL_CONFIG := markw_defconfig
-#TARGET_KERNEL_SOURCE := kernel/xiaomi/markw
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/Image.gz-dtb
+BOARD_KERNEL_TAGS_OFFSET := 0x0bc08000
+BOARD_RAMDISK_OFFSET     := 0x07c08000
+BOARD_DTB_OFFSET := 0x0bc08000
+BOARD_KERNEL_SECOND_OFFSET := 0x00f00000
+BOARD_BOOTIMG_HEADER_VERSION := 2
+
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo
 
 ## Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 67108864
