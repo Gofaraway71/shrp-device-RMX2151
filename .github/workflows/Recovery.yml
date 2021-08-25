@@ -18,7 +18,7 @@ on:
 env:
   MANIFEST: https://github.com/SHRP/platform_manifest_twrp_omni.git -b v3_10.0
   DEVICE: RMX2020
-  DT_LINK: https://github.com/Gofaraway71/shrp_device_Realme_RMX2001
+  DT_LINK: https://github.com/Gofaraway71/shrp-device-Realme7
   DT_PATH: device/realme/RMX2020
   CHAT_ID: ${{ secrets.TEST_CHAT_ID }}
   BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
