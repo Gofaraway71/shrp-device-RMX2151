@@ -52,6 +52,16 @@ service mobicore /vendor/bin/mcDriverDaemon --P1 /mnt/vendor/persist/mcRegistry 
     group root
     disabled
     seclabel u:r:recovery:s0    
+    
+on boot
+    start init-device-sh
+    start vendor.vibrator-1-0 
+    
+service vendor.vibrator-1-0 system/bin/android.hardware.vibrator@1.0-service
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0    
 
 service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     user root
