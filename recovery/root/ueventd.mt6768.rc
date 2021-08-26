@@ -1,8 +1,16 @@
 #change partition permission
-/dev/block/mmcblk0                                              0660    root    system
-/dev/block/mmcblk0boot0                                         0660    root    system
-/dev/block/mmcblk0boot1                                         0660    root    system
-/dev/misc-sd                                                    0660    root    system
+# eMMC only
+/dev/block/mmcblk0                               0660    root    system
+/dev/block/mmcblk0boot0                          0660    root    system
+/dev/block/mmcblk0boot1                          0660    root    system
+/dev/misc-sd                                     0660    root    system
+
+# UFS only
+/dev/block/sda                                   0660    root    system
+/dev/block/sdb                                   0660    root    system
+/dev/block/sdc                                   0660    root    system
+
+# eMMC/UFS common
 /dev/block/platform/bootdevice/by-name/misc2     0660    root    system
 /dev/block/platform/bootdevice/by-name/boot      0640    root    system
 /dev/block/platform/bootdevice/by-name/recovery  0640    root    system
@@ -14,7 +22,6 @@
 /dev/block/platform/bootdevice/by-name/logo      0660    root    system
 /dev/block/platform/bootdevice/by-name/frp       0660    root    system
 /dev/block/platform/bootdevice/by-name/md1img    0640    root    system
-/dev/block/platform/bootdevice/by-name/md1img_1  0640    root    system
 /dev/block/platform/bootdevice/by-name/md1img_a  0640    root    system
 /dev/block/platform/bootdevice/by-name/md1img_b  0640    root    system
 /dev/block/platform/bootdevice/by-name/md1dsp    0660    root    system
@@ -37,6 +44,7 @@
 /dev/stpgps               0660   gps        gps
 /dev/gps                  0660   gps        system
 /dev/fw_log_gps           0660   gps        gps
+/dev/gps_emi              0660   gps        gps
 
 # ANT
 /dev/stpant               0660   system     system
@@ -100,6 +108,20 @@
 /dev/pvrsrvkm             0666   root       root
 /dev/pvr_sync             0666   root       root
 
+#ifdef VENDOR_EDIT
+#Qingwen.Liu@RM.BSP.Fingerprint.Basic. 2019/09/29, add for goodix device policy start
+/dev/goodix_fp            0666   system     system
+#Qingwen.Liu@RM.BSP.Fingerprint.Basic. 2019/09/29, add for goodix device policy end
+#endif VENDOR_EDIT
+
+#ifdef VENDOR_EDIT
+#Qingwen.Liu@RM.BSP.Fingerprint.Basic. 2019/09/29, add for fpc device policy start
+/sys/bus/platform/devices/fpc_interrupt clk_enable        0660 system system
+/sys/bus/platform/devices/fpc_interrupt irq               0660 system system
+/sys/bus/platform/devices/fpc_interrupt irq_enable        0660 system system
+/sys/bus/platform/devices/fpc_interrupt wakelock_enable   0660 system system
+#Qingwen.Liu@RM.BSP.Fingerprint.Basic. 2019/09/29, add for fpc device policy end
+#endif VENDOR_EDIT
 
 /sys/devices/platform/leds-mt65xx/leds/green   delay_on      0664  system   system
 /sys/devices/platform/leds-mt65xx/leds/green   delay_off      0664  system   system
@@ -132,16 +154,9 @@
 /dev/touch                0660   root       system
 /dev/hotknot              0660   root       system
 
-#FPC fingerprint ufs
-/sys/bus/platform/devices/fingerprint  clk_enable 0660 system system
-/sys/bus/platform/devices/fingerprint  irq 0600 system system
-/sys/bus/platform/devices/fingerprint  hw_reset 0200 system system
-/sys/bus/platform/devices/fingerprint wakeup_enable 0600 system system
-/sys/bus/platform/devices/fingerprint  fingerdown_wait 0600 system system
-
 #hang_detect
-/dev/RT_Monitor           0660   system     system
-/dev/kick_powerkey        0660   system     system
+/dev/RT_Monitor           0600   system     system
+/dev/kick_powerkey        0600   system     system
 
 #MTK In-House TEE
 /dev/ttyACM0              0660   radio      radio
