@@ -36,7 +36,7 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 # Apex libraries
-#PRODUCT_HOST_PACKAGES += \
+PRODUCT_HOST_PACKAGES += \
     libandroidicu
 
 # HACK: Set vendor patch level
