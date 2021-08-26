@@ -53,6 +53,12 @@ service mobicore /vendor/bin/mcDriverDaemon --P1 /mnt/vendor/persist/mcRegistry 
     disabled
     seclabel u:r:recovery:s0    
     
+service init-device-sh /system/bin/init.device.sh
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0    
+    
 on boot
     start init-device-sh
     start vendor.vibrator-1-0 
@@ -83,30 +89,51 @@ service keymaster-4-0 /system/bin/android.hardware.keymaster@4.0-service.truston
     seclabel u:r:recovery:s0
 
 on property:hwservicemanager.ready=true
+    start hal_cryptoeng_oppo
+    start mobicore
     start keymaster-4-0
     start gatekeeper-1-0
 
 on property:ro.crypto.state=unsupported
     stop teei_daemon
-    stop keymaster-4-0
-    stop gatekeeper-1-0
+    stop hal_cryptoeng_oppo
+    stop mobicore
     stop servicemanager
     stop hwservicemanager
+    stop keymaster-4-0
+    stop gatekeeper-1-0
 
 on property:ro.crypto.state=unencrypted
     stop teei_daemon
-    stop keymaster-4-0
-    stop gatekeeper-1-0
+    stop hal_cryptoeng_oppo
+    stop mobicore
     stop servicemanager
     stop hwservicemanager
+    stop keymaster-4-0
+    stop gatekeeper-1-0
 
 on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
-    stop teei_daemon
-    stop keymaster-4-0
-    stop gatekeeper-1-0
+    stop hal_cryptoeng_oppo
+    stop mobicore
     stop servicemanager
     stop hwservicemanager
+    stop keymaster-4-0
+    stop gatekeeper-1-0
+    
+on property:enable.fbe.service=0
+    stop hal_cryptoeng_oppo
+    stop mobicore
+    stop servicemanager
+    stop hwservicemanager
+    stop keymaster-4-0
+    stop gatekeeperd
+    stop vendor.gatekeeper-1-0    
 
+on property:sys.usb.config=fastboot
+    start servicemanager
+    start hwservicemanager
+    restart fastbootd
+    
 on property:recovery.perf.mode=1
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
