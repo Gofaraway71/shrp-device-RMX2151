@@ -20,7 +20,7 @@
 $(call inherit-product, device/realme/RMX2020/device.mk)
 
 # Inherit some common Omni stuff.
-#$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, vendor/omni/config/common.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := RMX2020
