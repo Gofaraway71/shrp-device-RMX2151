@@ -20,7 +20,7 @@
 $(call inherit-product, device/realme/RMX2020/device.mk)
 
 # Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
+#$(call inherit-product, vendor/omni/config/common.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := RMX2020
@@ -38,7 +38,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Inherit from our PitchBlack configuration
-$(call inherit-product, vendor/pb/config/common.mk)
+#$(call inherit-product, vendor/pb/config/common.mk)
 
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root)
 
@@ -55,5 +55,5 @@ PRODUCT_MODEL := realme 6
 PRODUCT_MANUFACTURER := realme
 
 # HACK: Set vendor patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.security_patch=2099-12-31
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ro.vendor.build.security_patch=2099-12-31
