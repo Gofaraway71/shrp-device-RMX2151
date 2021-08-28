@@ -1,13 +1,11 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
-# Copyright (C) 2020 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2021 Team Win Recovery Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,44 +14,31 @@
 # limitations under the License.
 #
 
-# Inherit from phoenix device
-$(call inherit-product, device/realme/RMX2020/device.mk)
-
-# Inherit some common Omni stuff.
-#$(call inherit-product, vendor/omni/config/common.mk)
-
-# Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := RMX2020
-PRODUCT_NAME := omni_RMX2020
-PRODUCT_BRAND := realme
-PRODUCT_MODEL := RMX2020
-PRODUCT_MANUFACTURER := realme
-PRODUCT_RELEASE_NAME := realme 6
-#=====================================================
-# Dynamic
+# Release name
+PRODUCT_RELEASE_NAME := RMX2020
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+LOCAL_PATH := device/realme/RMX2020
 
-# Inherit from our PitchBlack configuration
-#$(call inherit-product, vendor/pb/config/common.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root)
 
-# Fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/omni/config/common.mk)
 
 ## Device identifier. This must come after all inclusions
-#PRODUCT_DEVICE := RMX2001
-#PRODUCT_NAME := omni_RMX2001
+PRODUCT_DEVICE := RMX2020
+PRODUCT_NAME := omni_RMX2020
 PRODUCT_BRAND := realme
-PRODUCT_MODEL := realme 6
+PRODUCT_MODEL := Realme C3/Narzo 10A
 PRODUCT_MANUFACTURER := realme
 
 # HACK: Set vendor patch level
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.vendor.build.security_patch=2099-12-31
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.build.security_patch=2099-12-31
+
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.0-impl-mock.recovery
