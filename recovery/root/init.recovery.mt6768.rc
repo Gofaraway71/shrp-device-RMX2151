@@ -4,17 +4,15 @@ on init
     mkdir /mnt/vendor/persist
     mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
     setprop persist.sys.firstlaunch false
+    install_keyring
+    setprop crypto.ready 1
 
 on early-init 
     start adbd
     start vold    
     
 on fs
-    install_keyring
-    setprop crypto.ready 1
     write /sys/class/power_supply/usb/otg_switch 1
-
-on fs
     start hwservicemanager
     start servicemanager
 
@@ -133,21 +131,3 @@ on property:sys.usb.config=fastboot
     start servicemanager
     start hwservicemanager
     restart fastbootd
-    
-on property:recovery.perf.mode=1
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu4/online 1
-    write /sys/devices/system/cpu/cpu5/online 1
-    write /sys/devices/system/cpu/cpu6/online 1
-    write /sys/devices/system/cpu/cpu7/online 1
-
-on property:recovery.perf.mode=0
-    write /sys/devices/system/cpu/cpu1/online 0
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 0
-    write /sys/devices/system/cpu/cpu4/online 1
-    write /sys/devices/system/cpu/cpu5/online 0
-    write /sys/devices/system/cpu/cpu6/online 1
-    write /sys/devices/system/cpu/cpu7/online 0
