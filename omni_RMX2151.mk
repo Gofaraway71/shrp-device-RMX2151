@@ -15,10 +15,10 @@
 #
 
 # Release name
-PRODUCT_RELEASE_NAME := RMX2020
+PRODUCT_RELEASE_NAME := RMX2151
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-LOCAL_PATH := device/realme/RMX2020
+LOCAL_PATH := device/realme/RMX2151
 
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
@@ -29,10 +29,10 @@ LOCAL_PATH := device/realme/RMX2020
 #$(call inherit-product, vendor/omni/config/common.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := RMX2020
-PRODUCT_NAME := omni_RMX2020
+PRODUCT_DEVICE := RMX2151
+PRODUCT_NAME := omni_RMX2151
 PRODUCT_BRAND := realme
-PRODUCT_MODEL := Realme C3/Narzo 10A
+PRODUCT_MODEL := Realme 7
 PRODUCT_MANUFACTURER := realme
 
 # HACK: Set vendor patch level
