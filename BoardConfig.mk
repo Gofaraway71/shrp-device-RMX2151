@@ -197,11 +197,11 @@ TARGET_USES_LOGD := true
 
 # NOTE - Dont use '-' or blank spaces in flag values , otherwise it will create build errors or other bugs in recovery (Excluding SHRP_PATH,SHRP_REC). 
 # Path of your SHRP Tree
-SHRP_PATH := device/realme/RMX2020
+SHRP_PATH := device/realme/RMX2151
 # Maintainer name *
 SHRP_MAINTAINER := Gofaraway71
 # Device codename *
-SHRP_DEVICE_CODE := RMX2020
+SHRP_DEVICE_CODE := RMX2151
 # Recovery Type (It can be treble,normal,SAR) [Only for About Section] *
 SHRP_REC_TYPE := Treble
 # Recovery Type (It can be A/B or A_only) [Only for About Section] *
@@ -229,7 +229,7 @@ SHRP_DARK := true
 INC_IN_REC_MAGISK := true
 
 #SHRP Addons
-SHRP_EXTERNAL_ADDON_PATH := "device/realme/RMX2020/addon/"
+SHRP_EXTERNAL_ADDON_PATH := "device/realme/RMX2151/addon/"
 SHRP_EXTERNAL_ADDON_1_NAME := "SELinux Permissiver"
 SHRP_EXTERNAL_ADDON_1_INFO := "Makes SELinux Permissive"
 SHRP_EXTERNAL_ADDON_1_FILENAME := "permissiver.zip"
