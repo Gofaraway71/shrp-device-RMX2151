@@ -19,7 +19,7 @@ env:
   MANIFEST: https://github.com/SHRP/manifest.git -b shrp-12.1
   DEVICE: RMX2020
   DT_LINK: https://github.com/Gofaraway71/shrp-device-Realme7
-  DT_PATH: device/realme/RMX2020
+  DT_PATH: device/realme/RMX2151
   CHAT_ID: ${{ secrets.TEST_CHAT_ID }}
   BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
   TARGET: recoveryimage
@@ -27,7 +27,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
        - name: Checkout
@@ -66,9 +66,9 @@ jobs:
              sudo zip -r9 SHRP-RMX2020.zip recovery.img
              ls > ls.txt
              #curl -F chat_id=$CHAT_ID -F document=@ls.txt -F parse_mode=markdown https://api.telegram.org/bot$BOT_TOKEN/sendDocument -F caption="Check it out @hraj9258"
-             #curl -F chat_id=$CHAT_ID -F document=@SHRP-RMX2020.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument -F caption="Please test it @hraj9258"
+             #curl -F chat_id=$CHAT_ID -F document=@SHRP-RMX2151.zip https://api.telegram.org/bot$BOT_TOKEN/sendDocument -F caption="Please test it @hraj9258"
              curl -sL https://git.io/file-transfer | sh
-             ./transfer wet SHRP-RMX2020.zip
+             ./transfer wet SHRP-RMX2151.zip
              ./transfer wet *.zip
              ./transfer wet *.img
              
