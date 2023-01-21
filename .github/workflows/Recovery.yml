@@ -105,12 +105,12 @@ jobs:
         echo "::set-output name=pwd::$(pwd)"
         git config --global user.name "Gofaraway71"
         git config --global user.email "aalbatron@gmail.com"
-        repo init --depth=1 -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
+        repo init -u https://github.com/SHRP/manifest.git -b shrp-12.1
       id: pwd
           
     - name: Repo Sync
       run: |
-        repo sync -j$(nproc --all) --force-sync
+        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
       working-directory: workspace
       
     - name: Clone device tree
